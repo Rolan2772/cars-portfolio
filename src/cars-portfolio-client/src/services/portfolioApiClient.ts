@@ -1,15 +1,14 @@
 import axios from 'axios';
+import {AppConfig} from '../config/appConfig'
 
-class PortfolioApiClient {
+export class PortfolioApiClient {
 
     public helloWorld(): Promise<String> {
-        return axios.get<String>('http://localhost:3000')
+        return axios.get<String>(AppConfig.getApiUrl())
             .then(response => response.data)
             .catch(reason => {
                 console.log(`Cannot fetch hello world endpoint: ${reason}`);
-                return "";
+                return '';
             });
     }
 }
-
-export default PortfolioApiClient;

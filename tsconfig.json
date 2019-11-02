@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "include": [
-    "src/**/*.ts"
+    "src/cars-portfolio-server/*.ts"
   ],
   "exclude": [
     "node_modules"
