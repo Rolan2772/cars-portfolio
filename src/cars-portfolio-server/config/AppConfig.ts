@@ -5,7 +5,7 @@ const LOCAL_CORS_CONFIG: object = {
 
 const CORS_CONFIG: object = {};
 
-class AppConfig {
+export class AppConfig {
 
     constructor() {
     }
@@ -16,5 +16,3 @@ class AppConfig {
             : LOCAL_CORS_CONFIG
     }
 }
-
-export default AppConfig;

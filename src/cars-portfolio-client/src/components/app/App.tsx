@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import PortfolioApiClient from '../../services/portfolioApiClient';
+import {PortfolioApiClient} from '../../services/portfolioApiClient';
 
 const App: React.FC = () => {
 
