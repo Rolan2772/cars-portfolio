@@ -1,6 +1,7 @@
 - add docker setup
 - add local DynamoDb docker container
 - add object -> object mappers
+- share types between client and server
 - add DI configuration, and test objects configuration
 - pagination or infinite scroll support
 - fine tune test configuration for server

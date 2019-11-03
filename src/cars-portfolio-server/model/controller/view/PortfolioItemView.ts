@@ -5,18 +5,22 @@ export class PortfolioItemView {
 
     private readonly _id: number;
     private readonly _model: string;
-    private readonly _fueltype: FuelType;
+    private readonly _fuelType: FuelType;
     private readonly _gearingType: GearingType;
     private readonly _version: string;
     private readonly _imageSrc: string;
+    private readonly _imageTitle: string;
+    private readonly _price: number;
 
     constructor(portfolioItem: PortfolioItemEntity) {
         this._id = portfolioItem.id;
         this._model = portfolioItem.car.model;
-        this._fueltype = portfolioItem.car.fuelType;
+        this._fuelType = portfolioItem.car.fuelType;
         this._gearingType = portfolioItem.car.gearingType;
         this._version = portfolioItem.car.version;
         this._imageSrc = portfolioItem.image.src;
+        this._imageTitle = portfolioItem.image.title;
+        this._price = portfolioItem.pricing.price;
     }
 
     get id(): number {
@@ -27,8 +31,8 @@ export class PortfolioItemView {
         return this._model;
     }
 
-    get fueltype(): FuelType {
-        return this._fueltype;
+    get fuelType(): FuelType {
+        return this._fuelType;
     }
 
     get gearingType(): GearingType {
@@ -41,5 +45,13 @@ export class PortfolioItemView {
 
     get imageSrc(): string {
         return this._imageSrc;
+    }
+
+    get imageTitle(): string {
+        return this._imageTitle;
+    }
+
+    get price(): number {
+        return this._price;
     }
 }
