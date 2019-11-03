@@ -1,25 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {PortfolioApiClient} from '../../services/portfolioApiClient';
+import React from "react";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import Portfolio from '../portfolio/Portfolio'
+import {default as PortfolioDetails} from "../details/PortfolioDetails";
 
 const App: React.FC = () => {
-
-    const api = new PortfolioApiClient();
-    const [serverText, setServerText] = useState<String>("");
-
-    useEffect(() => {
-        (async function anyNameFunction() {
-            const response = await api.helloWorld();
-            setServerText(response);
-        })();
-    }, []);
-
     return (
-        <React.Fragment>
-            Hello client app !!!
-            <p>
-                Server says: {serverText}
-            </p>
-        </React.Fragment>
+        <Router>
+            <div>
+                <Switch>
+                    <Route exact path="/">
+                        <Redirect to="/portfolio"/> : <Portfolio/>}
+                    </Route>
+                    <Route path="/portfolio/:id" component={PortfolioDetails}/>
+                    <Route exact path="/portfolio" component={Portfolio}/>
+                </Switch>
+            </div>
+        </Router>
     );
 };
 
