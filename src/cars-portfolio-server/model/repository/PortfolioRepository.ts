@@ -3,12 +3,12 @@ import {filter} from 'rxjs/operators';
 import {PortfolioItemEntity} from "../entity/PortfolioItemEntity";
 
 import {DataSource} from '../data/DataSource';
+import {QueryParams} from '../data/QueryParams';
 
 export interface PortfolioRepository {
-
     findAll(): Observable<PortfolioItemEntity>;
 
-    findActive(): Observable<PortfolioItemEntity>;
+    findActive(params: QueryParams): Observable<PortfolioItemEntity>;
 }
 
 export class DefaultPortfolioRepository implements PortfolioRepository {
@@ -19,15 +19,13 @@ export class DefaultPortfolioRepository implements PortfolioRepository {
         this.dataSource = dataSource;
     }
 
-    findActive(): Observable<PortfolioItemEntity> {
-        return this.dataSource.query().pipe(
+    findAll(): Observable<PortfolioItemEntity> {
+        return this.dataSource.query({priceSort: null});
+    }
+
+    findActive(params: QueryParams): Observable<PortfolioItemEntity> {
+        return this.dataSource.query(params).pipe(
             filter(item => item.visible)
         );
     }
-
-    findAll(): Observable<PortfolioItemEntity> {
-        return this.dataSource.query();
-    }
-
-
 }

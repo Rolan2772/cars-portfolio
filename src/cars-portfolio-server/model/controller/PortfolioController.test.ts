@@ -28,7 +28,7 @@ describe('find portfolio items', () => {
             expect(view.id).toEqual(PORTFOLIO_ENTITY.id);
         };
 
-        controller.findItems().pipe(toArray())
+        controller.findItems({priceSort: null}).pipe(toArray())
             .subscribe({
                 next: assertResult,
                 error: console.error,

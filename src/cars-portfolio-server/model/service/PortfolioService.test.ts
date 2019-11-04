@@ -18,7 +18,7 @@ describe('find portfolio items', () => {
     });
 
     test('find all active items', (done) => {
-        service.findActiveItems()
+        service.findActiveItems({priceSort: null})
             .subscribe({
                 next: () => {
                 },
