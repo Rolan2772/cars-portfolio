@@ -10,8 +10,6 @@ const controller = portfolioController();
 
 app.use("/static", express.static(__dirname + '/static'));
 
-console.log(`${JSON.stringify(process.env)}`);
-
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
