@@ -1,14 +1,14 @@
 import React from 'react'
 import {useHistory} from "react-router-dom";
-import {EMPTY_PORTFOLIO_ITEM, PortfolioItemView} from "../../../model/PortfolioItemView";
+
+import PortfolioImage from "./PortfolioImage";
+import PortfolioCardContent from "./PortfolioCardContent";
+import {EMPTY_PORTFOLIO_ITEM, PortfolioItemView} from "../../../types/PortfolioItemView";
+
 import CardActionArea from "@material-ui/core/CardActionArea/CardActionArea";
 import Card from "@material-ui/core/Card/Card";
-import CardContent from "@material-ui/core/CardContent/CardContent";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Button from "@material-ui/core/Button/Button";
-import ShortDescription from "./ShortDescription";
-import PriceDescription from "./PriceDescription";
-import PortfolioImage from "./PortfolioImage";
 
 interface Props {
     item: PortfolioItemView
@@ -28,10 +28,7 @@ const PortfolioCard: React.FC<Props> = (props) => {
             <Card>
                 <CardActionArea onClick={navigateToDetails}>
                     <PortfolioImage src={item._imageSrc} title={item._imageTitle}/>
-                    <CardContent>
-                        <ShortDescription model={item._model} version={item._version}/>
-                        <PriceDescription price={item._price}/>
-                    </CardContent>
+                    <PortfolioCardContent model={item._model} version={item._version} price={item._price}/>
                 </CardActionArea>
                 <CardActions>
                     <Button size="large" variant="outlined" fullWidth onClick={navigateToDetails}>

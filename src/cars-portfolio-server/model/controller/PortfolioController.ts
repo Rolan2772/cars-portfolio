@@ -2,10 +2,10 @@ import {PortfolioService} from "../service/PortfolioService";
 import {Observable} from "rxjs/index";
 import {PortfolioItemView} from "./view/PortfolioItemView";
 import {map} from "rxjs/operators";
+import {QueryParams} from "../data/QueryParams";
 
 export interface PortfolioController {
-
-    findItems(): Observable<PortfolioItemView>;
+    findItems(params: QueryParams): Observable<PortfolioItemView>;
 }
 
 export class DefaultPortfolioController implements PortfolioController {
@@ -16,8 +16,8 @@ export class DefaultPortfolioController implements PortfolioController {
         this.portfolioService = portfolioService;
     }
 
-    findItems(): Observable<PortfolioItemView> {
-        return this.portfolioService.findActiveItems().pipe(
+    findItems(params: QueryParams): Observable<PortfolioItemView> {
+        return this.portfolioService.findActiveItems(params).pipe(
             map(entity => new PortfolioItemView(entity))
         )
     }

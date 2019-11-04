@@ -11,7 +11,7 @@ describe('read portfolio', () => {
     });
 
     test('read active items', (done) => {
-        repository.findActive().pipe(count())
+        repository.findActive({priceSort: null}).pipe(count())
             .subscribe({
                 next: count => expect(count).toEqual(57),
                 error: console.error,
