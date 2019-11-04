@@ -5,3 +5,4 @@
 - add DI configuration, and test objects configuration
 - pagination or infinite scroll support
 - fine tune test configuration for server
+- fix server /portfolio/:id routing in prod mode

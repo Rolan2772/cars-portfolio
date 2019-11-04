@@ -7,7 +7,7 @@
     "tsc": "tsc",
     "test": "jest",
     "local": "ts-node-dev --respawn --transpileOnly src/cars-portfolio-server/app.ts",
-    "prod": "tsc && node ./build/app.js"
+    "prod": "npm run build --prefix src/cars-portfolio-client && tsc && node ./build/app.js"
   },
   "keywords": [
     "node",
