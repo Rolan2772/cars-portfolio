@@ -1,5 +1,5 @@
 ## ts-cars-portfolio
-Full stack application representing cars portfolio. Home page displays available cars and provides an ability to sort the data. Offer details page gives an extended offer information about car offer.
+Full stack application representing cars portfolio. Home page displays available cars and provides an ability to sort the data. Details page gives an extended offer overview information.
 
 ## Backend
 
