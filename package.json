@@ -2,12 +2,17 @@
   "name": "cars-portfolio",
   "version": "1.0.0",
   "description": "Cars Portfolio Application",
-  "main": "cars-portfolio-server/app.js",
+  "main": "./build/app.js",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "tsc": "tsc",
     "test": "jest",
     "local": "ts-node-dev --respawn --transpileOnly src/cars-portfolio-server/app.ts",
-    "prod": "npm run build --prefix src/cars-portfolio-client && tsc && node ./build/app.js"
+    "build": "tsc && cd src/cars-portfolio-client && npm install --only=dev && npm install && npm run build",
+    "start": "node ./build/app.js"
   },
   "keywords": [
     "node",

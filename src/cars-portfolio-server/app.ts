@@ -7,6 +7,7 @@ import * as path from "path";
 import {QueryParams, SortType} from "./model/data/QueryParams";
 
 const app: express.Application = express();
+const PORT = process.env.PORT || 3000;
 const controller = portfolioController();
 
 app.use("/static", express.static(__dirname + '/static'));
@@ -45,6 +46,6 @@ app.get('/api/portfolio', cors(AppConfig.getCorsConfig()), function (req, res) {
 
 app.options('*', cors(AppConfig.getCorsConfig()));
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
     console.log('Example app listening on port 3000!');
 });

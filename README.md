@@ -11,19 +11,12 @@ N-Layered server architecture on top of [NodeJS](https://nodejs.org/en/) and [Ex
 
 UI logic is implemented with [Typescript](https://www.typescriptlang.org/) language using [React](https://reactjs.org/) web framework and [Material-UI](https://material-ui.com/) components.
 
-## Initial project setup
-
-Global libraries and node modules
-```
-npm install copyfiles create-react-app -g
-npm install && npm install --prefix src/cars-portfolio-client
-```
-
 ## Build and run instructions
 
 Production mode
 ```
-npm run prod
+npm run build
+npm run start
 ```
 
 Local mode
@@ -31,5 +24,5 @@ Local mode
 # server
 npm run local
 # client
-npm run start --prefix src/cars-portfolio-client
+cd src/cars-portfolio-client && npm run start
 ```
