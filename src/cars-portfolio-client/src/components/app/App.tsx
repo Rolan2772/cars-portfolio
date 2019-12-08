@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import Portfolio from '../portfolio/Portfolio'
-import {default as PortfolioDetails} from "../details/PortfolioDetails";
+import PortfolioDetails from "../details/PortfolioDetails";
 
 const App: React.FC = () => {
     return (
