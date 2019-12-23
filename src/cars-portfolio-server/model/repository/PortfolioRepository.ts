@@ -1,9 +1,13 @@
-import {Observable} from 'rxjs';
-import {filter} from 'rxjs/operators';
+import {from, Observable} from 'rxjs';
+import {flatMap, map} from 'rxjs/operators';
 import {PortfolioItemEntity} from "../entity/PortfolioItemEntity";
 
-import {DataSource} from '../data/DataSource';
-import {QueryParams} from '../data/QueryParams';
+import {convertDbItem} from '../data/DataSourceConverter';
+import {QueryParams, SortType} from '../data/QueryParams';
+import {DynamoDbClient} from '../data/DynamoDbClient';
+import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
+import {PortfolioItem} from "../data/types/PortfolioItem";
+import {sort} from "../data/comparators/PriceComparator";
 
 export interface PortfolioRepository {
     findAll(): Observable<PortfolioItemEntity>;
@@ -13,19 +17,37 @@ export interface PortfolioRepository {
 
 export class DefaultPortfolioRepository implements PortfolioRepository {
 
-    private readonly dataSource: DataSource;
+    private readonly dynamoClient: DynamoDbClient;
 
-    constructor(dataSource: DataSource) {
-        this.dataSource = dataSource;
+    constructor(dynamoClient: DynamoDbClient) {
+        this.dynamoClient = dynamoClient;
     }
 
     findAll(): Observable<PortfolioItemEntity> {
-        return this.dataSource.query({priceSort: null});
+        const input: DocumentClient.ScanInput = this.dynamoClient.getDefaultInput();
+        return from(this.dynamoClient.getClient().scan(input).promise())
+            .pipe(
+                map(portfolio => <PortfolioItem[]>portfolio.Items),
+                map(items => sort(items, SortType.asc)),
+                flatMap(items => items),
+                map(convertDbItem));
     }
 
     findActive(params: QueryParams): Observable<PortfolioItemEntity> {
-        return this.dataSource.query(params).pipe(
-            filter(item => item.visible)
-        );
+        const input: DocumentClient.ScanInput = this.dynamoClient.getDefaultInput();
+        Object.assign(input, {
+            "FilterExpression": "visible = :visible",
+            "ExpressionAttributeValues": {":visible": true}
+        });
+
+        return from(this.dynamoClient.getClient().scan(input).promise())
+            .pipe(
+                map(portfolio => <PortfolioItem[]>portfolio.Items),
+                map(items => {
+                    const priceSort = params.priceSort != null ? params.priceSort : SortType.asc;
+                    return sort(items, priceSort);
+                }),
+                flatMap(items => items),
+                map(convertDbItem));
     }
 }

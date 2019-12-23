@@ -1,14 +1,14 @@
-import {DataSource, FileSystemDataSource} from '../model/data/DataSource';
 import {DefaultPortfolioRepository, PortfolioRepository} from '../model/repository/PortfolioRepository';
 import {DefaultPortfolioService, PortfolioService} from "../model/service/PortfolioService";
 import {DefaultPortfolioController, PortfolioController} from "../model/controller/PortfolioController";
+import {DynamoDbClient, LocalDynamoDbClient} from "../model/data/DynamoDbClient";
 
-export const dataSource = (): DataSource => {
-    return new FileSystemDataSource();
+export const dynamoDbClient = (): DynamoDbClient => {
+    return new LocalDynamoDbClient();
 };
 
 export const portfolioRepository = (): PortfolioRepository => {
-    return new DefaultPortfolioRepository(dataSource())
+    return new DefaultPortfolioRepository(dynamoDbClient())
 };
 
 export const portfolioService = (): PortfolioService => {

@@ -1,7 +1,8 @@
 // @TODO: share types between client and server
 export enum FuelType {
     BENZINE = 'Benzin',
-    DIESEL = 'Diesel'
+    DIESEL = 'Diesel',
+    ELECTRIC = 'Electric'
 }
 
 export enum GearingType {
