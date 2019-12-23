@@ -1,4 +1,4 @@
-export const PORTFOLIO = {
+{
   "Items": [
     {
       "portfolio": {
@@ -26114,8 +26114,5 @@ export const PORTFOLIO = {
         }
       }
     }
-  ],
-  "Count": 82,
-  "ScannedCount": 82,
-  "ConsumedCapacity": null
+  ]
 }

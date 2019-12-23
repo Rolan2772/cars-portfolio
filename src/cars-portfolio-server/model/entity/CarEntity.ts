@@ -1,6 +1,7 @@
 export enum FuelType {
     BENZINE = 'Benzin',
-    DIESEL = 'Diesel'
+    DIESEL = 'Diesel',
+    ELECTRIC = 'ELECTRIC'
 }
 
 export enum GearingType {
@@ -14,7 +15,6 @@ export class CarEntity {
     private readonly _fuelType: FuelType;
     private readonly _gearingType: GearingType;
     private readonly _version: string;
-
 
     constructor(model: string,
                 fuelType: FuelType,
