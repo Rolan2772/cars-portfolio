@@ -1,6 +1,6 @@
 module.exports = {
     "roots": [
-        "<rootDir>/src/cars-portfolio-server"
+        "<rootDir>/src"
     ],
     "transform": {
         "^.+\\.tsx?$": "ts-jest"

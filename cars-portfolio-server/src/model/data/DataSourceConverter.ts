@@ -1,11 +1,7 @@
-import {Observable, of} from 'rxjs';
-import {flatMap, map, tap} from 'rxjs/operators';
-
 import {PortfolioItemEntity} from "../entity/PortfolioItemEntity";
 import {CarEntity, FuelType, GearingType} from "../entity/CarEntity";
 import {ImageEntity} from "../entity/ImageEntity";
 import {PricingEntity} from "../entity/PricingEntity";
-import {QueryParams} from "./QueryParams";
 import {Car, Image, PortfolioItem, Pricing} from "./types/PortfolioItem";
 
 const convertCar = (car: Car): CarEntity => {

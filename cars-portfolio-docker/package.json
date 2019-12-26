@@ -4,10 +4,10 @@
   "description": "Docker configuration for ts-cars-portfolio project",
   "scripts": {
     "tsc": "tsc && copyfiles -u 1 \"src/data/*.json\" build",
-    "import": "npm run tsc && node build/import.js",
-    "create-table": "npm run tsc && node build/createTable.js",
-    "delete-table": "npm run tsc && node build/deleteTable.js",
-    "create-local-db": "npm run create-table && npm run import"
+    "import": "tsc && node build/import.js",
+    "create-table": "tsc && node build/createTable.js",
+    "delete-table": "tsc && node build/deleteTable.js",
+    "create-local-db": "npm run tsc && npm run create-table && npm run import"
   },
   "author": "Rolan Burykin",
   "license": "ISC",
@@ -16,7 +16,7 @@
     "docker-compose",
     "nodejs",
     "dynamodb",
-    "aws-cli"
+    "aws-sdk"
   ],
   "devDependencies": {
     "aws-sdk": "^2.596.0",
