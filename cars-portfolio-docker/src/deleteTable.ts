@@ -1,10 +1,10 @@
 import {config, DynamoDB} from 'aws-sdk';
-import {CARS_PORTFOLIO} from "./config";
+import {CARS_PORTFOLIO_TABLE, getAwsConfig} from "./config";
 
-config.update(CARS_PORTFOLIO.aws_local_config);
+config.update(getAwsConfig());
 const dynamoDb = new DynamoDB();
 const params: DynamoDB.Types.DeleteTableInput = {
-    TableName: CARS_PORTFOLIO.aws_table_name
+    TableName: CARS_PORTFOLIO_TABLE
 };
 
 dynamoDb.deleteTable(params, function (err, data) {

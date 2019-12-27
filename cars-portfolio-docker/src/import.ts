@@ -2,16 +2,16 @@ import fs from 'fs';
 import path from 'path';
 import {config, DynamoDB} from 'aws-sdk';
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
-import {CARS_PORTFOLIO} from "./config";
+import {CARS_PORTFOLIO_TABLE, getAwsConfig} from "./config";
 
-config.update(CARS_PORTFOLIO.aws_local_config);
+config.update(getAwsConfig());
 const client = new DynamoDB.DocumentClient();
 const source = path.resolve(__dirname, 'data/cars-portfolio-import.json');
 const json: DocumentClient.ScanOutput = JSON.parse(fs.readFileSync(source, 'utf8'));
 
 json.Items.forEach(item => {
     const params = {
-        TableName: CARS_PORTFOLIO.aws_table_name,
+        TableName: CARS_PORTFOLIO_TABLE,
         Item: {
             id: item.id.S,
             visible: item.visible.BOOL,
