@@ -1,28 +1,10 @@
 import {config, DynamoDB} from 'aws-sdk';
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
+import {AppConfig} from "../../config/AppConfig";
 
-const DYNAMO_CONFIG = {
-    aws_table_name: 'CarsPortfolio',
-    aws_local_config: {
-        region: 'local',
-        endpoint: 'http://localhost:8000'
-    },
-    aws_remote_config: {}
-};
-
-export class CarsPortfolioScanInput implements DocumentClient.ScanInput {
-
-    readonly TableName: string;
-
-    constructor(TableName: string) {
-        this.TableName = TableName;
-    }
-}
-
-export const carsPortfolio = new CarsPortfolioScanInput(DYNAMO_CONFIG.aws_table_name);
+const CARS_PORTFOLIO_TABLE = 'CarsPortfolio';
 
 export interface DynamoDbClient {
-
     getClient(): DocumentClient
     getDefaultInput(): DocumentClient.ScanInput
 }
@@ -32,7 +14,7 @@ export class LocalDynamoDbClient implements DynamoDbClient {
     private readonly client: DocumentClient;
 
     constructor() {
-        config.update(DYNAMO_CONFIG.aws_local_config);
+        config.update(AppConfig.getDynamoDbConfig());
         this.client = new DynamoDB.DocumentClient();
     }
 
@@ -41,6 +23,8 @@ export class LocalDynamoDbClient implements DynamoDbClient {
     }
 
     getDefaultInput(): DocumentClient.ScanInput {
-        return carsPortfolio;
+        return {
+            TableName: CARS_PORTFOLIO_TABLE
+        };
     }
 }
