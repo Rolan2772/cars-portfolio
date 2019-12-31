@@ -1,0 +1,5 @@
+# validate template
+aws cloudformation validate-template --template-body file://cloudformation\cars-portfolio.yml
+
+# deploy template
+aws cloudformation deploy --template-file cloudformation\cars-portfolio.yml --stack-name ts-cars-portfolio
