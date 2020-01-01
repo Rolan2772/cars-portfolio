@@ -8,7 +8,7 @@
     "create-table": "tsc && node build/createTable.js",
     "delete-table": "tsc && node build/deleteTable.js",
     "create-local-db": "npm run tsc && npm run create-table && npm run import",
-    "create-remote-db": "npm run tsc && npm run create-table && npm run import"
+    "create-remote-db": "./create-remote-db.sh"
   },
   "author": "Rolan Burykin",
   "license": "ISC",
