@@ -5,6 +5,3 @@
 - pagination or infinite scroll support
 - fine tune test configuration for server
 - fix server /portfolio/:id routing in prod mode
-
-# DynamoDB
-- optimize 'available' filed querying
