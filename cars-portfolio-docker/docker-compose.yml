@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  dynamo:
+  dynamodb:
     image: amazon/dynamodb-local
     ports:
       - 8000:8000
@@ -9,6 +9,20 @@ services:
       - dynamo_data:/home/dynamodblocal/data
     working_dir: /home/dynamodblocal
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ."
+  ts-cars-portfolio-server:
+    build:
+      context: ../cars-portfolio-server
+    ports:
+      - 3000:3000
+    depends_on:
+      - dynamodb
+  ts-cars-portfolio-client:
+    build:
+      context: ../cars-portfolio-client
+    ports:
+      - 80:80
+    depends_on:
+      - ts-cars-portfolio-server
 
 volumes:
   dynamo_data:

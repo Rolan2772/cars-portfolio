@@ -10,6 +10,7 @@ const CORS_CONFIG: object = {};
 const DYNAMO_CONFIG = {
     aws_local_config: {
         region: 'local',
+        // @TODO: resolve docker host
         endpoint: 'http://localhost:8000'
     },
     aws_remote_config: {
